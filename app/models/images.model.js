@@ -5,6 +5,7 @@ const Imagenes = function(image) {
   this.img_datetime = image.img_datatime;
   this.img_principal = image.img_principal;
   this.img_enable= image.img_enable;
+  this.id_prop=image.id_prop
 
 };
 
@@ -22,7 +23,7 @@ Imagenes.create = (newImagen, result) => {
 };
 
 Imagenes.findById = (imagenId, result) => {
-  sql.query(`SELECT * FROM imagen WHERE id_img = ${imagenId}`, (err, res) => {
+  sql.query(`SELECT * FROM imagen WHERE id_enabled = ${imagenId}  `, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);

@@ -14,7 +14,6 @@ exports.create = (req, res) => {
 
     id_pais: req.body.id_pais,
     id_ciudad : req.body.id_ciudad,
-    id_img: req.body.id_img,
     name: req.body.name,
     price: req.body.price,
     description: req.body.description,

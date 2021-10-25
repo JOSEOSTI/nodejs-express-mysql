@@ -14,6 +14,7 @@ exports.create = (req, res) => {
       img_datetime: req.body.img_datatime,
       img_principal: req.body.img_principal,
       img_enable: req.body.img_enable,
+      id_prop: req.body.id_prop
  
     });
 

@@ -4,7 +4,6 @@ const sql = require("./db.js");
 const Properties = function(properties) {
   this.id_pais = properties.id_pais;
   this.id_ciudad = properties.id_ciudad;
-  this.id_img = properties.id_img;
   this.name = properties.name;
   this.price = properties.price;
   this.description = properties.description;
