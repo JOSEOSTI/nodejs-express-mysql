@@ -64,6 +64,24 @@ exports.findOne = (req, res) => {
   });
 };
 
+
+// Find a single Propertie with a ciudadName
+exports.findSearch = (req, res) => {
+  Properties.searchById(req.params.ciudadName, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found Propertie with id ${req.params.ciudadName}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving Propertie with id " + req.params.ciudadName
+        });
+      }
+    } else res.send(data);
+  });
+};
+
 // Update a Propertie identified by the propertieId in the request
 exports.update = (req, res) => {
   // Validate Request

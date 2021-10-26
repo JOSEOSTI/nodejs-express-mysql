@@ -47,6 +47,28 @@ Properties.findById = (propertieId, result) => {
   });
 };
 
+Properties.searchById = (ciudadName, result) => {
+  sql.query(`SELECT *
+  FROM propiedad
+  INNER JOIN ciudad ON propiedad.id_ciudad = ciudad.id_ciudad where ciudad.ciudad_nombre = ${ciudadName}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      console.log("found propertie: ", res);
+      result(null, res);
+      return;
+    }
+
+    // not found Customer with the id
+    result({ kind: "not_found" }, null);
+  });
+};
+
+
 Properties.getAll = result => {
   sql.query("SELECT * FROM propiedad", (err, res) => {
     if (err) {

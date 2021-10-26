@@ -60,3 +60,19 @@ exports.findOne= (req, res) => {
   });
 };
 
+// Find a single Propertie with a propertieId
+exports.findOneAll= (req, res) => {
+  Imagenes.findByAll(req.params.imagenId, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found Imagen with id ${req.params.imagenId}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving Imagen with id " + req.params.imagenId
+        });
+      }
+    } else res.send(data);
+  });
+};
