@@ -3,16 +3,22 @@ module.exports = app => {
   const properties = require("../controllers/propertie.controller.js");
   const imagenes = require("../controllers/images.controller.js");
 
-  // Create a news Images
-  app.post("/picture", imagenes.create);
-  // Retrieve all properties
-  app.get("/picture", imagenes.findAll);
-  // Create a news Images
-  app.get("/picture/:imagenId", imagenes.findOne);
 
-  //FIND ALL ID_PROP
+//------------------------------------------------------------------//
+                 // RestAPI  Imageens
+
+   //create new images
+  app.post("/picture", imagenes.create);
+  // Retrieve all images
+  app.get("/picture", imagenes.findAll);
+  // Retrieve images for  imag_pricipal
+  app.get("/picture/:imagenId", imagenes.findOne);
+ // Retrieve images for  imag_pricipal when  id_prop=id_prop
   app.get("/picture/src/:imagenId", imagenes.findOneAll);
-  // Create a new Customer
+  
+//------------------------------------------------------------------//
+                 // RestAPI Propiedades
+  
   app.post("/properties", properties.create);
 
   // Retrieve all properties
@@ -20,6 +26,7 @@ module.exports = app => {
 
   // Retrieve a single Customer with customerId
   app.get("/properties/:propertieId", properties.findOne);
+
   // Retrieve a single Customer with customerId
   app.get("/properties/search/:ciudadName", properties.findSearch);
 
