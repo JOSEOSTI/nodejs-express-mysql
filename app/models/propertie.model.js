@@ -37,8 +37,8 @@ Properties.findById = (propertieId, result) => {
     }
 
     if (res.length) {
-      console.log("found propertie: ", res[0]);
-      result(null, res[0]);
+      console.log("found propertie: ", res);
+      result(null, res);
       return;
     }
 
@@ -46,23 +46,24 @@ Properties.findById = (propertieId, result) => {
     result({ kind: "not_found" }, null);
   });
 };
-
 Properties.searchById = (ciudadName, result) => {
   sql.query(`SELECT *
   FROM propiedad
-  INNER JOIN ciudad ON propiedad.id_ciudad = ciudad.id_ciudad where ciudad.ciudad_nombre = ${ciudadName}`, (err, res) => {
+  INNER JOIN ciudad ON propiedad.id_ciudad = ciudad.id_ciudad 
+  where ciudad.ciudad_nombre = ${ciudadName} or propiedad.beds=${ciudadName} or propiedad.toileds=${ciudadName}
+  or (propiedad.price = ${ciudadName} )`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
-
+    
     if (res.length) {
       console.log("found propertie: ", res);
       result(null, res);
       return;
     }
-
+    
     // not found Customer with the id
     result({ kind: "not_found" }, null);
   });
@@ -76,11 +77,26 @@ Properties.getAll = result => {
       result(null, err);
       return;
     }
-
+    
     console.log("properties: ", res);
     result(null, res);
   });
 };
+
+Properties.AllCiudad = result => {
+  sql.query("SELECT ciudad_nombre FROM ciudad", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    
+    console.log("ciudad: ", res);
+    result(null, res);
+  });
+};
+
+
 
 Properties.updateById = (id, propertie, result) => {
   sql.query(

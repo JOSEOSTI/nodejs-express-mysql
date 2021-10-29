@@ -16,6 +16,9 @@ module.exports = app => {
  // Retrieve images for  imag_pricipal when  id_prop=id_prop
   app.get("/picture/src/:imagenId", imagenes.findOneAll);
   
+  //  ------------------------------------------------------------------//
+  //Ciudad//
+  app.get("/properties/ciudad", properties.findAllCity);
 //------------------------------------------------------------------//
                  // RestAPI Propiedades
   
@@ -38,4 +41,5 @@ module.exports = app => {
 
   // Create a new Customer
   app.delete("/properties", properties.deleteAll);
+
 };

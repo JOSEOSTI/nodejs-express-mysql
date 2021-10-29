@@ -1,6 +1,10 @@
-###
-GET http://localhost:9000/properties HTTP/1.1
+####################CIUDAD##############
+##
+GET http://localhost:9000/properties/ciudad HTTP/1.1
 
+
+
+####################PICTURES############################
 ###
 GET http://localhost:9000/picture HTTP/1.1
 
@@ -16,7 +20,14 @@ Content-Type: application/json
     "id_prop":18
    
 }
+###
+GET http://localhost:9000/picture/15 HTTP/1.1
 
+
+
+#######################PROPIEDAD##################################
+###
+GET http://localhost:9000/properties HTTP/1.1
 ###
 POST http://localhost:9000/properties HTTP/1.1
 Content-Type: application/json
@@ -35,12 +46,9 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:9000/properties/search/"MANTA" HTTP/1.1
+GET http://localhost:9000/properties/search/"100" HTTP/1.1
 ###
 GET http://localhost:9000/properties/15 HTTP/1.1
-
-###
-GET http://localhost:9000/picture/15 HTTP/1.1
 
 ###
 DELETE http://localhost:9000/properties/2 HTTP/1.1
