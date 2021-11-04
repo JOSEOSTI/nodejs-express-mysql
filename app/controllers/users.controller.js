@@ -1,4 +1,6 @@
-const Properties = require("../models/propertie.model.js");
+const  Users = require("../models/users.model.js");
+const sql = require("../models/db.js");
+
 
 // Create and Save a new Propertie
 exports.create = (req, res) => {
@@ -9,36 +11,32 @@ exports.create = (req, res) => {
     });
   }
 
-  // Create a Propertie
-  const propertie = new Properties({
+  // Create a User
+  const user = new Users({
 
-    id_pais: req.body.id_pais,
-    id_ciudad : req.body.id_ciudad,
     name: req.body.name,
-    price: req.body.price,
-    description: req.body.description,
-    address:req.body.address,
-    beds: req.body.beds,
-    toileds: req.body.toileds,
-    square : req.body.square
+    lastName : req.body.lastName,
+    email :req.body.email,
+    userName: req.body.userName,
+    password : req.body.password
+  
   });
 
 
-  // Save Propertie in the database
-  Properties.create(propertie, (err, data) => {
+  // Save Puser in the database
+  Users.create(user, (err, data) => {
     if (err)
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Propertie."
+          err.message || "Some error occurred while creating the User."
       });
     else res.send(data);
   });
 };
 
-
 // Retrieve all propertie from the database.
 exports.findAll = (req, res) => {
-  Properties.getAll((err, data) => {
+  Users.getAll((err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -47,21 +45,49 @@ exports.findAll = (req, res) => {
     else res.send(data);
   });
 };
+////*******login******* *//
 
-exports.findAllCity = (req, res) => {
-  Properties.AllCiudad((err, data) => {
-    if (err)
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving City."
+  exports.login = (req, res )=>{
+    var email= req.body.email;
+    var password = req.body.password;
+    sql.query('SELECT * FROM usuario WHERE email = ?',[email], function (error, results, fields) {
+    if (error) {
+      // console.log("error ocurred",error);
+      res.send({
+        "code":400,
+        "failed":"error ocurred"
       });
-    else res.send(data);
-  });
-};
+    }else{
+      // console.log('The solution is: ', results);
+      if(results.length >0){
+        if(results[0].password == password){
+          res.send({
+            "code":200,
+            "success":"login sucessfull"
+              });
+        }
+        else{
+          res.send({
+            "code":204,
+            "success":"Email and password does not match"
+              });
+        }
+      }
+      else{
+        res.send({
+          "code":204,
+          "success":"Email does not exits"
+            });
+      }
+    }
+    });
+  }
 
+  
+ 
 // Find a single Propertie with a propertieId
 exports.findOne = (req, res) => {
-  Properties.findById(req.params.propertieId, (err, data) => {
+ Users.findById(req.params.propertieId, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
@@ -77,23 +103,6 @@ exports.findOne = (req, res) => {
 };
 
 
-// Find a single Propertie with a ciudadName
-exports.findSearch = (req, res) => {
-  Properties.searchById(req.params.ciudadName, (err, data) => {
-    if (err) {
-      if (err.kind === "not_found") {
-        res.status(404).send({
-          message: `Not found Propertie with id ${req.params.ciudadName}.`
-        });
-      } else {
-        res.status(500).send({
-          message: "Error retrieving Propertie with id " + req.params.ciudadName
-        });
-      }
-    } else res.send(data);
-  });
-};
-
 // Update a Propertie identified by the propertieId in the request
 exports.update = (req, res) => {
   // Validate Request
@@ -105,7 +114,7 @@ exports.update = (req, res) => {
 
   console.log(req.body);
 
-  Properties.updateById(
+  Users.updateById(
     req.params.propertieId,
     new Properties(req.body),
     (err, data) => {
@@ -126,7 +135,7 @@ exports.update = (req, res) => {
 
 // Delete a Customer with the specified customerId in the request
 exports.delete = (req, res) => {
-  Properties.remove(req.params.propertieId, (err, data) => {
+  Users.remove(req.params.propertieId, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
@@ -143,7 +152,7 @@ exports.delete = (req, res) => {
 
 // Delete all Propertie from the database.
 exports.deleteAll = (req, res) => {
-  Properties.removeAll((err, data) => {
+  Users.removeAll((err, data) => {
     if (err)
       res.status(500).send({
         message:

@@ -2,6 +2,7 @@
 module.exports = app => {
   const properties = require("../controllers/propertie.controller.js");
   const imagenes = require("../controllers/images.controller.js");
+  const users = require("../controllers/users.controller.js");
 
 
 //------------------------------------------------------------------//
@@ -41,5 +42,20 @@ module.exports = app => {
 
   // Create a new Customer
   app.delete("/properties", properties.deleteAll);
+
+
+
+/////--------------------USERS--------------------------------///
+app.post("/users/register", users.create);
+
+// Retrieve all properties
+app.get("/users", users.findAll);
+
+// Retrieve a single Customer with customerId
+app.get("/users/:userId", users.findOne);
+
+
+///////////*-------------------LOGIN---------*----------------////
+app.post("/users/login", users.login);
 
 };
