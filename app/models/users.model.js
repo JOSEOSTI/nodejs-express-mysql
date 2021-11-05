@@ -12,41 +12,24 @@ const Users = function(user) {
 
 
 
-Users.login = (req, res )=>{
-  var email= req.body.email;
-  var password = req.body.password;
-  sql.query('SELECT * FROM usuario WHERE email = ?',[email], function (error, results, fields) {
-  if (error) {
-    // console.log("error ocurred",error);
-    res.send({
-      "code":400,
-      "failed":"error ocurred"
-    });
-  }else{
-    // console.log('The solution is: ', results);
-    if(results.length >0){
-      if(results[0].password == password){
-        res.send({
-          "code":200,
-          "success":"login sucessfull",
-          "data":res
-            });
-      }
-      else{
-        res.send({
-          "code":204,
-          "success":"Email and password does not match"
-            });
-      }
-    }
-    else{
-      res.send({
-        "code":204,
-        "success":"Email does not exits"
-          });
-    }
-  }
-  });
+Users.login = (request, response )=>{
+  var email = request.body.email;
+	var password = request.body.password;
+	if (username && password) {
+		connection.query('SELECT * FROM usuario WHERE email = ? AND password = ?', [email, password], function(error, results, fields) {
+			if (results.length > 0) {
+				request.session.loggedin = true;
+				request.session.username = username;
+				response.redirect('/home');
+			} else {
+				response.send('Incorrect Username and/or Password!');
+			}			  
+			response.end();
+		});
+	} else {
+		response.send('Please enter Username and Password!');
+		response.end();
+	}
 }
 
 Users.create = (newUsuario, result) => {

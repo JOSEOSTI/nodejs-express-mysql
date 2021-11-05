@@ -84,7 +84,7 @@ Properties.getAll = result => {
 };
 
 Properties.AllCiudad = result => {
-  sql.query("SELECT * FROM ciudad", (err, res) => {
+  sql.query("SELECT ciudad_nombre FROM ciudad", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -97,7 +97,7 @@ Properties.AllCiudad = result => {
 };
 
 
-
+  
 Properties.updateById = (id, propertie, result) => {
   sql.query(
     "UPDATE propiedad SET name = ?, price = ?, description = ? , address = ? , beds = ? , toileds = ? , square = ?  WHERE id_prop = ?",

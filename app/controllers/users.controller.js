@@ -47,40 +47,22 @@ exports.findAll = (req, res) => {
 };
 ////*******login******* *//
 
-  exports.login = (req, res )=>{
-    var email= req.body.email;
-    var password = req.body.password;
-    sql.query('SELECT * FROM usuario WHERE email = ?',[email], function (error, results, fields) {
-    if (error) {
-      // console.log("error ocurred",error);
-      res.send({
-        "code":400,
-        "failed":"error ocurred"
+  exports.login = (request, response )=>{
+    var email = request.body.email;
+    var password = request.body.password;
+    if (email && password) {
+      sql.query('SELECT * FROM usuario WHERE email = ? AND password = ?', [email, password], function(error, results, fields) {
+        if (results.length > 0) {        
+          response.send(results); 
+        } else {
+          response.send({status:0 , message:"Incorrect Username and/or Password!"});
+        }			
+        response.end();
       });
-    }else{
-      // console.log('The solution is: ', results);
-      if(results.length >0){
-        if(results[0].password == password){
-          res.send({
-            "code":200,
-            "success":"login sucessfull"
-              });
-        }
-        else{
-          res.send({
-            "code":204,
-            "success":"Email and password does not match"
-              });
-        }
-      }
-      else{
-        res.send({
-          "code":204,
-          "success":"Email does not exits"
-            });
-      }
+    } else {
+      response.send('Please enter Username and Password!');
+      response.end();
     }
-    });
   }
 
   
