@@ -51,8 +51,7 @@ app.post("/users/register", users.create);
 // Retrieve all properties
 app.get("/users", users.findAll);
 
-// Retrieve a single Customer with customerId
-app.get("/users/:userId", users.findOne);
+app.get("/users/:userId", users.findUserId);
 
 
 ///////////*-------------------LOGIN---------*----------------////

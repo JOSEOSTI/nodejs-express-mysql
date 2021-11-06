@@ -19,6 +19,9 @@ Content-Type: application/json
    
 }
 
+###
+GET http://localhost:9000/users/10 HTTP/1.1
+
 ####################CIUDAD##############
 ##
 GET http://localhost:9000/properties/ciudad HTTP/1.1
@@ -67,7 +70,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:9000/properties/search/"100" HTTP/1.1
+GET http://localhost:9000/properties/search/"MACHALA" HTTP/1.1
 ###
 GET http://localhost:9000/properties/15 HTTP/1.1
 

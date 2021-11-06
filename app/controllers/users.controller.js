@@ -45,6 +45,24 @@ exports.findAll = (req, res) => {
     else res.send(data);
   });
 };
+
+/////***FindId****///
+// Find a single Propertie with a propertieId
+exports.findUserId = (req, res) => {
+  Users.findById(req.params.userId, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found Propertie with id ${req.params.userId}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving Propertie with id " + req.params.userId
+        });
+      }
+    } else res.send(data);
+  });
+};
 ////*******login******* *//
 
   exports.login = (request, response )=>{
@@ -66,23 +84,6 @@ exports.findAll = (req, res) => {
   }
 
   
- 
-// Find a single Propertie with a propertieId
-exports.findOne = (req, res) => {
- Users.findById(req.params.propertieId, (err, data) => {
-    if (err) {
-      if (err.kind === "not_found") {
-        res.status(404).send({
-          message: `Not found Propertie with id ${req.params.propertieId}.`
-        });
-      } else {
-        res.status(500).send({
-          message: "Error retrieving Propertie with id " + req.params.propertieId
-        });
-      }
-    } else res.send(data);
-  });
-};
 
 
 // Update a Propertie identified by the propertieId in the request

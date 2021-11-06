@@ -82,11 +82,13 @@ exports.findSearch = (req, res) => {
   Properties.searchById(req.params.ciudadName, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
-        res.status(404).send({
+        res.send({
+          status:0,
           message: `Not found Propertie with id ${req.params.ciudadName}.`
         });
       } else {
-        res.status(500).send({
+        res.send({
+          status:0,
           message: "Error retrieving Propertie with id " + req.params.ciudadName
         });
       }
