@@ -53,8 +53,8 @@ app.get("/users", users.findAll);
 
 app.get("/users/:userId", users.findUserId);
 
+app.put("/users/:updateUser", users.update);
 
 ///////////*-------------------LOGIN---------*----------------////
 app.post("/users/login", users.login);
-
 };

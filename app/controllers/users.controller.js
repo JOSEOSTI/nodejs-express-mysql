@@ -18,7 +18,12 @@ exports.create = (req, res) => {
     lastName : req.body.lastName,
     email :req.body.email,
     userName: req.body.userName,
-    password : req.body.password
+    password : req.body.password,
+    // phone :req.body.phone,
+    // address:req.body.address,
+    // city:req.body.city,
+    // estate:req.body.city,
+    // zipCode:req.body.zipCode
   
   });
 
@@ -88,6 +93,7 @@ exports.findUserId = (req, res) => {
 
 // Update a Propertie identified by the propertieId in the request
 exports.update = (req, res) => {
+  console.log(req)
   // Validate Request
   if (!req.body) {
     res.status(400).send({
@@ -98,17 +104,17 @@ exports.update = (req, res) => {
   console.log(req.body);
 
   Users.updateById(
-    req.params.propertieId,
-    new Properties(req.body),
+    req.params.updateUser,
+    new Users(req.body),
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found Propertie with id ${req.params.propertieId}.`
+            message: `Not found User with id ${req.params.userd}.`
           });
         } else {
           res.status(500).send({
-            message: "Error updating Propertie with id " + req.params.propertieId
+            message: "Error updating User with id " + req.params.userId
           });
         }
       } else res.send(data);

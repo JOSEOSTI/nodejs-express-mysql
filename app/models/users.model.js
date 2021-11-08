@@ -1,35 +1,39 @@
 const sql = require("./db.js");
 
-const Users = function(user) {
+const Users = function (user) {
   this.name = user.name;
   this.lastName = user.lastName;
   this.email = user.email;
-  this.userName= user.userName;
+  this.userName = user.userName;
   this.password = user.password
-
+  this.phone = user.phone,
+  this.address = user.address,
+  this.city = user.city,
+  this.estate = user.estate,
+  this.zipCode = user.zipCode
 
 };
 
 
 
-Users.login = (request, response )=>{
+Users.login = (request, response) => {
   var email = request.body.email;
-	var password = request.body.password;
-	if (username && password) {
-		connection.query('SELECT * FROM usuario WHERE email = ? AND password = ?', [email, password], function(error, results, fields) {
-			if (results.length > 0) {
-				request.session.loggedin = true;
-				request.session.username = username;
-				response.redirect('/home');
-			} else {
-				response.send('Incorrect Username and/or Password!');
-			}			  
-			response.end();
-		});
-	} else {
-		response.send('Please enter Username and Password!');
-		response.end();
-	}
+  var password = request.body.password;
+  if (username && password) {
+    connection.query('SELECT * FROM usuario WHERE email = ? AND password = ?', [email, password], function (error, results, fields) {
+      if (results.length > 0) {
+        request.session.loggedin = true;
+        request.session.username = username;
+        response.redirect('/home');
+      } else {
+        response.send('Incorrect Username and/or Password!');
+      }
+      response.end();
+    });
+  } else {
+    response.send('Please enter Username and Password!');
+    response.end();
+  }
 }
 
 Users.create = (newUsuario, result) => {
@@ -79,8 +83,8 @@ Users.getAll = result => {
 
 Users.updateById = (id, user, result) => {
   sql.query(
-    "UPDATE usuario SET name = ?, lastname = ?, email = ? , nick_name = ? , password = ?  WHERE id_usuario = ?",
-    [user.name, user.lastname, user.email, user.nick_name , user.password , id],
+    "UPDATE usuario SET name = ?, lastname = ?, email = ? , phone = ? ,address =? , city=? , estate= ? , zipCode= ? WHERE id_usuario = ?",
+    [user.name, user.lastname, user.email, user.phone, user.address, user.city, user.estado, user.codePostal, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -94,7 +98,7 @@ Users.updateById = (id, user, result) => {
         return;
       }
 
-      console.log("updated user: ", { id: id, ...user});
+      console.log("updated user: ", { id: id, ...user });
       result(null, { id: id, ...user });
     }
   );

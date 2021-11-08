@@ -78,16 +78,36 @@ GET http://localhost:9000/properties/15 HTTP/1.1
 DELETE http://localhost:9000/properties/2 HTTP/1.1
 
 ###
-PUT http://localhost:9000/properties/10 HTTP/1.1
+PUT http://localhost:9000/properties/16 HTTP/1.1
 Content-Type: application/json
 
 {
     "name": "Suite Ejemplo images",
-    "price": 280,
+    "price": 150,
     "description":"Esta suite tiene un amplio closet, el piso es de tablones de madera chanul , amplias ventanas que la hacen muy luminosa y cálida y desde las cuales puedes tener una hermosa vista del paisaje.",
     "address":"el condado S6-130 norte quito",
     "beds":"8",
     "toileds":"2",
     "square":"2m 4m 8m2"
+
+}
+###
+PUT http://localhost:9000/users/6 HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "pauilana",
+    "lastName": "",
+    "userName":"",
+    "password":"",
+    "email": "",
+    "phone": "0983499852",
+    "address": "solanda",
+    "city": "quito",
+    "estate": "ecuador",
+    "zipCode": "2454"
+
+
+
 
 }
