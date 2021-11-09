@@ -31,6 +31,10 @@ module.exports = app => {
   // Retrieve a single Customer with customerId
   app.get("/properties/:propertieId", properties.findOne);
 
+   // Retrieve a single Customer with customerId
+   app.get("/properties/src/:propertieId", properties.findInnerJ);
+
+
   // Retrieve a single Customer with customerId
   app.get("/properties/search/:ciudadName", properties.findSearch);
 

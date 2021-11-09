@@ -76,7 +76,22 @@ exports.findOne = (req, res) => {
   });
 };
 
-
+// Find a single Propertie with a propertieId
+exports.findInnerJ = (req, res) => {
+  Properties.findInerJoin(req.params.propertieId, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found Propertie with id ${req.params.propertieId}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving Propertie with id " + req.params.propertieId
+        });
+      }
+    } else res.send(data);
+  });
+};
 // Find a single Propertie with a ciudadName
 exports.findSearch = (req, res) => {
   Properties.searchById(req.params.ciudadName, (err, data) => {

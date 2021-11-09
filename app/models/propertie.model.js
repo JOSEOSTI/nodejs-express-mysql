@@ -50,7 +50,7 @@ Properties.searchById = (ciudadName, result) => {
   sql.query(`SELECT *
   FROM propiedad
   INNER JOIN ciudad ON propiedad.id_ciudad = ciudad.id_ciudad 
-  where ciudad.ciudad_nombre = ${ciudadName} or propiedad.beds=${ciudadName} or propiedad.toileds=${ciudadName}
+  where ciudad.ciudad_nombre = ${ciudadName} or propiedad.beds=${ciudadName} or propiedad.toileds=${ciudadName} or propiedad.state=${ciudadName} 
   or (propiedad.price = ${ciudadName} )`, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -82,6 +82,27 @@ Properties.getAll = result => {
     result(null, res);
   });
 };
+
+
+Properties.findInerJoin = (propertieId, result) => {
+  sql.query(`SELECT * FROM propiedad p inner  join imagen i  on i.id_prop = p.id_prop where i.id_prop = ${propertieId}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;ssssss
+    }
+
+    if (res.length) {
+      console.log("found propertie: ", res);
+      result(null, res);
+      return;
+    }
+
+    // not found Customer with the id
+    result({ kind: "not_found" }, null);
+  });
+};
+
 
 Properties.AllCiudad = result => {
   sql.query("SELECT ciudad_nombre FROM ciudad", (err, res) => {
