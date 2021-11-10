@@ -61,4 +61,8 @@ app.put("/users/:updateUser", users.update);
 
 ///////////*-------------------LOGIN---------*----------------////
 app.post("/users/login", users.login);
+app.post("/users/upload", users.imgUpdate);
+app.get("/users/img/avatar/:avatarId", users.getImgUser);
+
+
 };

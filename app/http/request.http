@@ -109,8 +109,7 @@ Content-Type: application/json
     "city": "quito",
     "estate": "ecuador",
     "zipCode": "2454"
-
-
-
-
 }
+
+###
+GET http://localhost:9000/users/img/avatar/'5' HTTP/1.1

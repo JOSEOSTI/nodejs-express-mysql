@@ -1,6 +1,8 @@
 const  Users = require("../models/users.model.js");
 const sql = require("../models/db.js");
-
+const multer = require('multer')
+const path = require('path')
+const fs = require('fs')
 
 // Create and Save a new Propertie
 exports.create = (req, res) => {
@@ -68,6 +70,55 @@ exports.findUserId = (req, res) => {
     } else res.send(data);
   });
 };
+
+
+const diskstorage = multer.diskStorage({
+  destination: path.join(__dirname, '../images'),
+  filename: (req, file, cb) => {
+      cb(null, Date.now()  + file.originalname)
+  }
+})
+const uploadImage = multer({
+  storage: diskstorage,
+  limits: {fileSize: 1000000}
+}).single('image');
+////////igmpost////
+exports.imgUpdate =(req,res)=>{
+  const request = req;
+  const response = res;
+  uploadImage(request , response , (err) => {
+    // const type = req.file.mimetype
+    const name = request.file.originalname
+    console.log(name)
+    // const data = fs.readFileSync(path.join(__dirname, '../images/' + req.file.filename))
+
+    sql.query(`INSERT INTO imguser (img)
+    VALUES ('${name}'); `, (err, rows) => {
+        if(err) return response.status(500).send('server error')
+
+        response.send('image saved!')
+    })
+});
+}
+
+
+exports.getImgUser =(req,res)=>{
+  
+    const id = req.params.avatarId
+    console.log(id)
+    sql.query(`Select * from imguser  where id_usuario =${id}`, (err, rows) => {
+        if(err) return res.status(500).send('server error')
+
+        // rows.map(data=>{
+        //   fs.writeFileSync(path.join(__dirname,  '../images'+ data.id_imguser +'.png'),data.img)
+        // })
+
+        const imagesdir = fs.readdirSync(path.join(__dirname, '../images'))
+
+        res.send(imagesdir )
+    })
+
+}
 ////*******login******* *//
 
   exports.login = (request, response )=>{
@@ -87,8 +138,6 @@ exports.findUserId = (req, res) => {
       response.end();
     }
   }
-
-  
 
 
 // Update a Propertie identified by the propertieId in the request
