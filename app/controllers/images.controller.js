@@ -14,7 +14,9 @@ exports.create = (req, res) => {
       img_datetime: req.body.img_datatime,
       img_principal: req.body.img_principal,
       img_enable: req.body.img_enable,
-      id_prop: req.body.id_prop
+      id_prop: req.body.id_prop,
+      id_auto: req.body.id_auto
+
  
     });
 
@@ -60,9 +62,41 @@ exports.findOne= (req, res) => {
   });
 };
 
+
+exports.autoOne= (req, res) => {
+  Imagenes.autoById(req.params.imagenId, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found Imagen with id ${req.params.imagenId}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving Imagen with id " + req.params.imagenId
+        });
+      }
+    } else res.send(data);
+  });
+};
 // Find a single Propertie with a propertieId
 exports.findOneAll= (req, res) => {
   Imagenes.findByAll(req.params.imagenId, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found Imagen with id ${req.params.imagenId}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving Imagen with id " + req.params.imagenId
+        });
+      }
+    } else res.send(data);
+  });
+};
+
+exports.findAutoAll= (req, res) => {
+  Imagenes.findByAutoAll(req.params.imagenId, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({

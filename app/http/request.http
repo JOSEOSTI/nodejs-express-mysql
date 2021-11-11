@@ -22,6 +22,7 @@ Content-Type: application/json
 ###
 GET http://localhost:9000/users/10 HTTP/1.1
 
+
 ####################CIUDAD##############
 ##
 GET http://localhost:9000/properties/ciudad HTTP/1.1
@@ -46,6 +47,8 @@ Content-Type: application/json
 }
 ###
 GET http://localhost:9000/picture/15 HTTP/1.1
+###
+GET http://localhost:9000/picture/automovil/1 HTTP/1.1
 
 
 
@@ -94,6 +97,54 @@ Content-Type: application/json
     "square":"2m 4m 8m2"
 
 }
+
+
+
+#######################Automoviles##################################
+###
+GET http://localhost:9000/automoviles HTTP/1.1
+
+###
+POST http://localhost:9000/automoviles HTTP/1.1
+Content-Type: application/json
+
+{
+    "id_pais": 1,
+    "id_ciudad": 1,
+    "marca": "Audi",
+    "modelo":"Q5",
+    "precio":"69,900",
+    "descripcion":"Auto en perfecto estado. A toda prueba",
+    "matricula":"AASD-7844",
+    "estado":"nuevo",
+    "anio":"2021",
+    "km":"33,000 Km"
+   
+}
+
+###
+GET http://localhost:9000/properties/search/"MACHALA" HTTP/1.1
+###
+GET http://localhost:9000/automoviles/1 HTTP/1.1
+
+###
+GET http://localhost:9000/properties/src/15 HTTP/1.1
+
+###
+DELETE http://localhost:9000/properties/2 HTTP/1.1
+
+###
+PUT http://localhost:9000/properties/16 HTTP/1.1
+
+
+
+
+
+
+
+
+
+
 ###
 PUT http://localhost:9000/users/6 HTTP/1.1
 Content-Type: application/json

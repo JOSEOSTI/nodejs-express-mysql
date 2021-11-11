@@ -6,6 +6,8 @@ const Imagenes = function(image) {
   this.img_principal = image.img_principal;
   this.img_enable= image.img_enable;
   this.id_prop=image.id_prop
+  this.id_auto=image.id_auto
+
 
 };
 
@@ -40,6 +42,25 @@ Imagenes.findById = (imagenId, result) => {
     result({ kind: "not_found" }, null);
   });
 };
+
+Imagenes.autoById = (imagenId, result) => {
+  sql.query(`SELECT * FROM imagen_auto WHERE img_principal = 1 and id_auto = ${imagenId} `, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      console.log("found image: ", res);
+      result(null, res);
+      return;
+    }
+
+    // not found Customer with the id
+    result({ kind: "not_found" }, null);
+  });
+};
 Imagenes.findByAll = (imagenId, result) => {
   sql.query(`SELECT * FROM imagen WHERE  id_prop = ${imagenId} `, (err, res) => {
     if (err) {
@@ -58,6 +79,27 @@ Imagenes.findByAll = (imagenId, result) => {
     result({ kind: "not_found" }, null);
   });
 };
+
+Imagenes.findByAutoAll = (imagenId, result) => {
+  sql.query(`SELECT * FROM imagen_auto WHERE  id_auto = ${imagenId} `, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      console.log("found image: ", res);
+      result(null, res);
+      return;
+    }
+
+    // not found Customer with the id
+    result({ kind: "not_found" }, null);
+  });
+};
+
+
 
 Imagenes.getAll = result => {
   sql.query("SELECT * FROM imagen ", (err, res) => {
