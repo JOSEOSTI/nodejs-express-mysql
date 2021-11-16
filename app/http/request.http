@@ -73,7 +73,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:9000/properties/search/"MACHALA" HTTP/1.1
+GET http://localhost:9000/properties/search/"Manta" HTTP/1.1
 ###
 GET http://localhost:9000/properties/15 HTTP/1.1
 

@@ -62,7 +62,7 @@ Imagenes.autoById = (imagenId, result) => {
   });
 };
 Imagenes.findByAll = (imagenId, result) => {
-  sql.query(`SELECT * FROM imagen WHERE  id_prop = ${imagenId} `, (err, res) => {
+  sql.query(`SELECT * FROM imagen WHERE img_principal="0" and id_prop = ${imagenId} `, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);

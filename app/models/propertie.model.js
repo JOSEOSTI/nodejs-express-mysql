@@ -29,7 +29,10 @@ Properties.create = (newPropertie, result) => {
 };
 
 Properties.findById = (propertieId, result) => {
-  sql.query(`SELECT * FROM propiedad WHERE id_prop = ${propertieId}`, (err, res) => {
+  sql.query(`SELECT * FROM propiedad p 
+  INNER JOIN ciudad c ON  p.id_ciudad=c.id_ciudad
+  INNER JOIN pais pa ON  c.id_pais=pa.id_pais
+    WHERE p.id_prop = ${propertieId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -47,11 +50,11 @@ Properties.findById = (propertieId, result) => {
   });
 };
 Properties.searchById = (ciudadName, result) => {
-  sql.query(`SELECT *
-  FROM propiedad
-  INNER JOIN ciudad ON propiedad.id_ciudad = ciudad.id_ciudad 
-  where ciudad.ciudad_nombre = ${ciudadName} or propiedad.beds=${ciudadName} or propiedad.toileds=${ciudadName} or propiedad.state=${ciudadName} 
-  or (propiedad.price = ${ciudadName} )`, (err, res) => {
+  sql.query(`SELECT DISTINCT c.ciudad_nombre,p.id_prop,p.name,p.price,p.beds,p.toileds,p.description,p.address,i.img_url,p.square,p.state
+  FROM propiedad p
+  INNER JOIN ciudad c ON p.id_ciudad = c.id_ciudad 
+  INNER JOIN imagen i ON p.id_prop =i.id_prop 
+  where i.img_principal=1 and c.ciudad_nombre=${ciudadName} or p.beds=${ciudadName} or p.toileds=${ciudadName}  or p.price=${ciudadName}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
