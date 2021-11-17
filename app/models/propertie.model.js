@@ -54,7 +54,9 @@ Properties.searchById = (ciudadName, result) => {
   FROM propiedad p
   INNER JOIN ciudad c ON p.id_ciudad = c.id_ciudad 
   INNER JOIN imagen i ON p.id_prop =i.id_prop 
-  where i.img_principal=1 and c.ciudad_nombre=${ciudadName} or p.beds=${ciudadName} or p.toileds=${ciudadName}  or p.price=${ciudadName}`, (err, res) => {
+  where i.img_principal=1  and c.ciudad_nombre=${ciudadName} or p.beds=${ciudadName} or p.toileds=${ciudadName}or p.state=${ciudadName}  or p.price=${ciudadName}
+   GROUP BY p.id_prop
+  `, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
