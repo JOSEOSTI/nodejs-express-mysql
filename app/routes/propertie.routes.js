@@ -54,7 +54,11 @@ module.exports = app => {
 
   //------------------------------------------------------------------//
   // RestAPI Automoviles
-
+  //  ------------------------------------------------------------------//
+  //Ciudad//
+  app.get("/automoviles/marca", autos.findAllMarca);
+  //------------------------------------------------------------------//
+  // RestAPI Propiedades
   app.post("/automoviles", autos.create);
 
   // Retrieve all automoviles
@@ -68,7 +72,7 @@ module.exports = app => {
 
 
   // Retrieve a single Customer with customerId
-  app.get("/autmoviles/search/:ciudadName", properties.findSearch);
+  app.get("/automoviles/search/:dataAuto", autos.findSearch);
 
   // Update a Customer with customerId
   app.put("/automoviles/:propertieId", properties.update);

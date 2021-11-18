@@ -110,7 +110,7 @@ Properties.findInerJoin = (propertieId, result) => {
 
 
 Properties.AllCiudad = result => {
-  sql.query("SELECT ciudad_nombre FROM ciudad", (err, res) => {
+  sql.query("SELECT * FROM ciudad", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

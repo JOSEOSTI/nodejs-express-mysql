@@ -48,8 +48,8 @@ exports.findAll = (req, res) => {
   });
 };
 
-exports.findAllCity = (req, res) => {
-  Autos.AllCiudad((err, data) => {
+exports.findAllMarca = (req, res) => {
+  Autos.AllMarca((err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -94,17 +94,17 @@ exports.findInnerJ = (req, res) => {
 };
 // Find a single Propertie with a ciudadName
 exports.findSearch = (req, res) => {
-  Autos.searchById(req.params.ciudadName, (err, data) => {
+  Autos.searchById(req.params.dataAuto, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.send({
           status:0,
-          message: `Not found Propertie with id ${req.params.ciudadName}.`
+          message: `Not found Propertie with id ${req.params.dataAuto}.`
         });
       } else {
         res.send({
           status:0,
-          message: "Error retrieving Propertie with id " + req.params.ciudadName
+          message: "Error retrieving Propertie with id " + req.params.dataAuto
         });
       }
     } else res.send(data);
