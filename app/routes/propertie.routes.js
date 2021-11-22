@@ -65,7 +65,7 @@ module.exports = app => {
   app.get("/automoviles", autos.findAll);
 
   // Retrieve a single Customer with customerId
-  app.get("/automoviles/:automovilId", autos.findOne);
+  app.get("/automoviles/-/:automovilId", autos.findOne);
 
   // Retrieve a single Customer with customerId
   app.get("/automoviles/src/:propertieId", properties.findInnerJ);

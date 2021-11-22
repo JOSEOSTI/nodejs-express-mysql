@@ -32,6 +32,8 @@ Autos.create = (newAuto, result) => {
 Autos.findById = (automovilId, result) => {
   sql.query(`SELECT * FROM automovil  a 
   inner join marca m On m.id_marca=a.id_marca
+  inner join ciudad c On c.id_ciudad = a.id_ciudad
+  inner join pais p On p.id_pais = c.id_pais
   WHERE id_auto =${automovilId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
