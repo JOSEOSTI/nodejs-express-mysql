@@ -111,11 +111,10 @@ Content-Type: application/json
 {
     "id_pais": 1,
     "id_ciudad": 1,
-    "marca": "Audi",
+    "id_marca":8,
     "modelo":"Q5",
     "precio":"69,900",
     "descripcion":"Auto en perfecto estado. A toda prueba",
-    "matricula":"AASD-7844",
     "estado":"nuevo",
     "anio":"2021",
     "km":"33,000 Km"
