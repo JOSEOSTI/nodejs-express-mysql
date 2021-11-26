@@ -55,8 +55,14 @@ module.exports = app => {
   //------------------------------------------------------------------//
   // RestAPI Automoviles
   //  ------------------------------------------------------------------//
-  //Ciudad//
+  //Marca//
   app.get("/automoviles/marca", autos.findAllMarca);
+  //Subtipo//
+  app.get("/automoviles/subtipo", autos.findAllSubtipo);
+  //Combustible//
+  app.get("/automoviles/combustible", autos.findAllCombust);
+  //Transmicion//
+  app.get("/automoviles/transmision", autos.findAllTrans);
   //------------------------------------------------------------------//
   // RestAPI Propiedades
   app.post("/automoviles", autos.create);
@@ -70,18 +76,10 @@ module.exports = app => {
   // Retrieve a single Customer with customerId
   app.get("/automoviles/src/:propertieId", properties.findInnerJ);
 
-
   // Retrieve a single Customer with customerId
   app.get("/automoviles/search/:dataAuto", autos.findSearch);
 
-  // Update a Customer with customerId
-  app.put("/automoviles/:propertieId", properties.update);
 
-  // Delete a Customer with customerId
-  app.delete("/properties/:propertieId", properties.delete);
-
-  // Create a new Customer
-  app.delete("/properties", properties.deleteAll);
 
   /////--------------------USERS--------------------------------///
   app.post("/users/register", users.create);

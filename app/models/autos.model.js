@@ -30,11 +30,18 @@ Autos.create = (newAuto, result) => {
 };
 
 Autos.findById = (automovilId, result) => {
-  sql.query(`SELECT * FROM automovil  a 
-  inner join marca m On m.id_marca=a.id_marca
-  inner join ciudad c On c.id_ciudad = a.id_ciudad
-  inner join pais p On p.id_pais = c.id_pais
-  WHERE id_auto =${automovilId}`, (err, res) => {
+  sql.query(`SELECT a.id_auto,a.descripcion,a.precio , a.matricula, a.estado, a.anio , a.km , a.color, a.motor ,
+  m.nombre_marca , mo.nombre_modelo, s.name_subtipo , t.nombre_transm , c.nombre_combustible, ci.ciudad_nombre,
+  p.pais_nombre
+  FROM automovil a
+  Inner join marca m On m.id_marca = a.id_marca
+  Inner join modelo mo On mo.id_modelo = a.id_modelo
+  Inner join subtipo s On s.id_subtipo = a.id_subtipo
+  Inner Join transmision t On t.id_transm = a.id_transm
+  Inner Join combustible c On c.id_combustible = a.id_combustible
+  inner join ciudad ci On ci.id_ciudad = a.id_ciudad
+  inner join pais p On p.id_pais = ci.id_pais
+  WHERE a.id_auto =${automovilId}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -52,10 +59,12 @@ Autos.findById = (automovilId, result) => {
   });
 };
 Autos.searchById = (dataAuto, result) => {
-  sql.query(`SELECT DISTINCT  a.id_auto,m.nombre_marca,a.modelo , a.descripcion , a.precio ,a.estado , a.anio ,a.km , i.img_url
-  ,p.pais_nombre,c.ciudad_nombre , a.matricula
+  sql.query(`SELECT DISTINCT  a.id_auto,m.nombre_marca, a.descripcion , a.precio ,a.estado , a.anio ,a.km , i.img_url
+  ,p.pais_nombre,c.ciudad_nombre , a.matricula , mo.nombre_modelo
     FROM automovil a
-    INNER JOIN marca m ON m.id_marca= a.id_marca   
+    INNER JOIN marca m ON m.id_marca= a.id_marca
+    INNER JOIN modelo mo On mo.id_modelo = a.id_modelo
+   
     INNER JOIN ciudad c ON a.id_ciudad = c.id_ciudad   
     INNER JOIN pais p ON p.id_pais= c.id_pais 
     INNER JOIN imagen_auto  i ON a.id_auto =i.id_auto
@@ -80,7 +89,18 @@ Autos.searchById = (dataAuto, result) => {
 
 
 Autos.getAll = result => {
-  sql.query("SELECT * FROM automovil", (err, res) => {
+  sql.query(`SELECT a.id_auto,a.descripcion,a.precio , a.matricula, a.estado, a.anio , a.km , a.color, 
+  a.motor ,m.nombre_marca , mo.nombre_modelo, s.name_subtipo , t.nombre_transm , c.nombre_combustible ,
+  ci.id_ciudad,ci.ciudad_nombre
+  FROM automovil a
+  Inner join marca m On m.id_marca = a.id_marca
+  Inner join modelo mo On mo.id_modelo = a.id_modelo
+  Inner join subtipo s On s.id_subtipo = a.id_subtipo
+  Inner Join transmision t On t.id_transm = a.id_transm
+  Inner Join combustible c On c.id_combustible = a.id_combustible
+  inner join ciudad ci On ci.id_ciudad = a.id_ciudad
+  inner join pais p On p.id_pais = ci.id_pais
+  `, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -115,6 +135,44 @@ Autos.findInerJoin = (propertieId, result) => {
 
 Autos.AllMarca = result => {
   sql.query("SELECT nombre_marca FROM marca", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    console.log("ciudad: ", res);
+    result(null, res);
+  });
+};
+
+Autos.AllCombustible = result => {
+  sql.query("SELECT nombre_combustible FROM combustible", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    console.log("ciudad: ", res);
+    result(null, res);
+  });
+};
+Autos.AllTransmision = result => {
+  sql.query("SELECT nombre_transm FROM transmision", (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    console.log("ciudad: ", res);
+    result(null, res);
+  });
+};
+
+Autos.AllSubtipo = result => {
+  sql.query("SELECT name_subtipo FROM subtipo", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

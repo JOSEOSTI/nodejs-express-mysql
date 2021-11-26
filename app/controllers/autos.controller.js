@@ -48,6 +48,7 @@ exports.findAll = (req, res) => {
   });
 };
 
+// Retrieve all marca from the database.
 exports.findAllMarca = (req, res) => {
   Autos.AllMarca((err, data) => {
     if (err)
@@ -58,18 +59,51 @@ exports.findAllMarca = (req, res) => {
     else res.send(data);
   });
 };
+// Retrieve all combustible from the database.
+exports.findAllCombust= (req, res) => {
+  Autos.AllCombustible((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving City."
+      });
+    else res.send(data);
+  });
+};
 
-// Find a single Propertie with a propertieId
+// Retrieve all transmision from the database.
+exports.findAllTrans = (req, res) => {
+  Autos.AllTransmision((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving City."
+      });
+    else res.send(data);
+  });
+};
+// Retrieve all msubtipo from the database.
+exports.findAllSubtipo = (req, res) => {
+  Autos.AllSubtipo((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving City."
+      });
+    else res.send(data);
+  });
+};
+// Find a single Automovol with a automovilId
 exports.findOne = (req, res) => {
   Autos.findById(req.params.automovilId, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Propertie with id ${req.params.automovilId}.`
+          message: `Not found Automovil with id ${req.params.automovilId}.`
         });
       } else {
         res.status(500).send({
-          message: "Error retrieving Propertie with id " + req.params.automovilId
+          message: "Error retrieving Automovil with id " + req.params.automovilId
         });
       }
     } else res.send(data);
@@ -92,7 +126,7 @@ exports.findInnerJ = (req, res) => {
     } else res.send(data);
   });
 };
-// Find a single Propertie with a ciudadName
+// Find de params of automovil
 exports.findSearch = (req, res) => {
   Autos.searchById(req.params.dataAuto, (err, data) => {
     if (err) {
