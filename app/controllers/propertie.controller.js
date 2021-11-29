@@ -13,14 +13,14 @@ exports.create = (req, res) => {
   const propertie = new Properties({
 
     id_pais: req.body.id_pais,
-    id_ciudad : req.body.id_ciudad,
+    id_ciudad: req.body.id_ciudad,
     name: req.body.name,
     price: req.body.price,
     description: req.body.description,
-    address:req.body.address,
+    address: req.body.address,
     beds: req.body.beds,
     toileds: req.body.toileds,
-    square : req.body.square
+    square: req.body.square
   });
 
 
@@ -98,12 +98,12 @@ exports.findSearch = (req, res) => {
     if (err) {
       if (err.kind === "not_found") {
         res.send({
-          status:0,
+          status: 0,
           message: `Not found Propertie with id ${req.params.ciudadName}.`
         });
       } else {
         res.send({
-          status:0,
+          status: 0,
           message: "Error retrieving Propertie with id " + req.params.ciudadName
         });
       }
@@ -119,9 +119,6 @@ exports.update = (req, res) => {
       message: "Content can not be empty!"
     });
   }
-
-  console.log(req.body);
-
   Properties.updateById(
     req.params.propertieId,
     new Properties(req.body),

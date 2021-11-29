@@ -27,7 +27,6 @@ module.exports = app => {
   app.get("/properties/ciudad", properties.findAllCity);
   //------------------------------------------------------------------//
   // RestAPI Propiedades
-
   app.post("/properties", properties.create);
 
   // Retrieve all properties
