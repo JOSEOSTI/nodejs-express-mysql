@@ -133,12 +133,12 @@ exports.findSearch = (req, res) => {
       if (err.kind === "not_found") {
         res.send({
           status:0,
-          message: `Not found Propertie with id ${req.params.dataAuto}.`
+          message: `Not found Autos with id ${req.params.dataAuto}.`
         });
       } else {
         res.send({
           status:0,
-          message: "Error retrieving Propertie with id " + req.params.dataAuto
+          message: "Error retrieving Autos with id " + req.params.dataAuto
         });
       }
     } else res.send(data);
