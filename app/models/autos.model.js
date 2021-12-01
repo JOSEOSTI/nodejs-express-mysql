@@ -64,12 +64,12 @@ Autos.searchById = (dataAuto, result) => {
     FROM automovil a
     INNER JOIN marca m ON m.id_marca= a.id_marca
     INNER JOIN modelo mo On mo.id_modelo = a.id_modelo
-   
     INNER JOIN ciudad c ON a.id_ciudad = c.id_ciudad   
-    INNER JOIN pais p ON p.id_pais= c.id_pais 
+    INNER JOIN pais p ON p.id_pais= c.id_pais
+    INNER JOIN subtipo sub ON sub.id_subtipo = a.id_subtipo
     INNER JOIN imagen_auto  i ON a.id_auto =i.id_auto
-    where i.img_principal=1  and c.ciudad_nombre=${dataAuto}  or a.precio=${dataAuto} or a.anio=${dataAuto}  or m.nombre_marca=${dataAuto} or
-    a.estado=${dataAuto} 
+    where i.img_principal=1  and c.ciudad_nombre=${dataAuto}  or a.precio=${dataAuto} or a.anio=${dataAuto}  
+    or m.nombre_marca=${dataAuto} or a.estado=${dataAuto} or sub.name_subtipo=${dataAuto}
     GROUP BY a.id_auto `, (err, res) => {
     if (err) {
       console.log("error: ", err);

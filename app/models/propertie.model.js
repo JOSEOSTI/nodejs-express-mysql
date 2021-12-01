@@ -64,7 +64,6 @@ Properties.searchById = (ciudadName, result) => {
     }
     
     if (res.length) {
-      console.log("found propertie: ", res);
       result(null, res);
       return;
     }
