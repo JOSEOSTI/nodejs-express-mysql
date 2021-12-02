@@ -22,6 +22,10 @@ module.exports = app => {
 
   app.get("/picture/automovil/picture/:imagenId", imagenes.findAutoAll);
 
+    //  ------------------------------------------------------------------//
+  //Inmueble//
+  app.get("/properties/inmueble", properties.findAllInmueble);
+  //------------------------------------------------------------------//
   //  ------------------------------------------------------------------//
   //Ciudad//
   app.get("/properties/ciudad", properties.findAllCity);

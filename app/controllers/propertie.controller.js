@@ -59,6 +59,17 @@ exports.findAllCity = (req, res) => {
   });
 };
 
+exports.findAllInmueble = (req, res) => {
+  Properties.AllInmuebe((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving City."
+      });
+    else res.send(data);
+  });
+};
+
 // Find a single Propertie with a propertieId
 exports.findOne = (req, res) => {
   Properties.findById(req.params.propertieId, (err, data) => {
