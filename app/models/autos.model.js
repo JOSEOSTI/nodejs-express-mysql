@@ -31,8 +31,8 @@ Autos.create = (newAuto, result) => {
 
 Autos.findById = (automovilId, result) => {
   sql.query(`SELECT a.id_auto,a.descripcion,a.precio , a.matricula, a.estado, a.anio , a.km , a.color, a.motor ,
-  m.nombre_marca , mo.nombre_modelo, s.name_subtipo , t.nombre_transm , c.nombre_combustible, ci.ciudad_nombre,
-  p.pais_nombre
+  m.nombre_marca , mo.nombre_modelo, s.name_subtipo , t.nombre_transm 
+  , c.nombre_combustible, ci.ciudad_nombre,pro.provincia_nombre, pa.pais_nombre
   FROM automovil a
   Inner join marca m On m.id_marca = a.id_marca
   Inner join modelo mo On mo.id_modelo = a.id_modelo
@@ -40,8 +40,10 @@ Autos.findById = (automovilId, result) => {
   Inner Join transmision t On t.id_transm = a.id_transm
   Inner Join combustible c On c.id_combustible = a.id_combustible
   inner join ciudad ci On ci.id_ciudad = a.id_ciudad
-  inner join pais p On p.id_pais = ci.id_pais
-  WHERE a.id_auto =${automovilId}`, (err, res) => {
+  inner join provincia pro On pro.id_provincia = ci.id_provincia
+  inner join pais pa On pa.id_pais = pro.id_pais
+  WHERE a.id_auto =${automovilId}
+`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -90,17 +92,18 @@ Autos.searchById = (dataAuto, result) => {
 
 
 Autos.getAll = result => {
-  sql.query(`SELECT a.id_auto,a.descripcion,a.precio , a.matricula, a.estado, a.anio , a.km , a.color, 
-  a.motor ,m.nombre_marca , mo.nombre_modelo, s.name_subtipo , t.nombre_transm , c.nombre_combustible ,
-  ci.id_ciudad,ci.ciudad_nombre
-  FROM automovil a
-  Inner join marca m On m.id_marca = a.id_marca
-  Inner join modelo mo On mo.id_modelo = a.id_modelo
-  Inner join subtipo s On s.id_subtipo = a.id_subtipo
-  Inner Join transmision t On t.id_transm = a.id_transm
-  Inner Join combustible c On c.id_combustible = a.id_combustible
-  inner join ciudad ci On ci.id_ciudad = a.id_ciudad
-  inner join pais p On p.id_pais = ci.id_pais
+  sql.query(`SELECT a.id_auto,a.descripcion,a.precio , a.estado, a.anio , a.km ,m.nombre_marca , mo.nombre_modelo 
+  ,ci.ciudad_nombre,pro.provincia_nombre,pa.pais_nombre
+    FROM automovil a
+    Inner join marca m On m.id_marca = a.id_marca
+    Inner join modelo mo On mo.id_modelo = a.id_modelo
+    Inner join subtipo s On s.id_subtipo = a.id_subtipo
+    Inner Join transmision t On t.id_transm = a.id_transm
+    Inner Join combustible c On c.id_combustible = a.id_combustible
+    inner join ciudad ci On ci.id_ciudad = a.id_ciudad
+    inner join provincia pro ON pro.id_provincia = ci.id_provincia
+    inner join pais pa ON pa.id_pais = pro.id_pais
+    
   `, (err, res) => {
     if (err) {
       console.log("error: ", err);
