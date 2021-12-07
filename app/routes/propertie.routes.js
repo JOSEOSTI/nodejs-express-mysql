@@ -46,6 +46,9 @@ module.exports = app => {
   // Retrieve a single Customer with customerId
   app.get("/properties/search/:ciudadName", properties.findSearch);
 
+  app.get("/properties/searchImg/:ciudadName", properties.findSearch1);
+
+
   // Update a Customer with customerId
   app.put("/properties/:propertieId", properties.update);
 

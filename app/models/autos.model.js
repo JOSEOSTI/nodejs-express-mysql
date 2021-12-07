@@ -62,17 +62,18 @@ Autos.findById = (automovilId, result) => {
 };
 Autos.searchById = (dataAuto, result) => {
   sql.query(`SELECT DISTINCT  a.id_auto,m.nombre_marca, a.descripcion , a.precio ,a.estado , a.anio ,a.km , i.img_url
-  ,p.pais_nombre,c.ciudad_nombre , a.matricula , mo.nombre_modelo
+  ,c.ciudad_nombre ,pro.provincia_nombre, pa.pais_nombre , a.matricula , mo.nombre_modelo
     FROM automovil a
     INNER JOIN marca m ON m.id_marca= a.id_marca
     INNER JOIN modelo mo On mo.id_modelo = a.id_modelo
     INNER JOIN ciudad c ON a.id_ciudad = c.id_ciudad   
-    INNER JOIN pais p ON p.id_pais= c.id_pais
+    INNER JOIN provincia pro ON pro.id_provincia= c.id_provincia
+    INNER JOIN pais pa ON pa.id_pais = pro.id_pais
     INNER JOIN subtipo sub ON sub.id_subtipo = a.id_subtipo
     INNER JOIN imagen_auto  i ON a.id_auto =i.id_auto
-    where i.img_principal=1  and c.ciudad_nombre=${dataAuto}  or a.precio=${dataAuto} or a.anio=${dataAuto}  
+    where i.img_principal=1  and c.ciudad_nombre=${dataAuto}  or a.precio=${dataAuto} or a.anio=${dataAuto}
     or m.nombre_marca=${dataAuto} or a.estado=${dataAuto} or sub.name_subtipo=${dataAuto}
-    GROUP BY a.id_auto `, (err, res) => {
+    GROUP BY a.id_auto`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);

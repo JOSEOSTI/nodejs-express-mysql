@@ -122,6 +122,23 @@ exports.findSearch = (req, res) => {
   });
 };
 
+exports.findSearch1 = (req, res) => {
+  Properties.searchById1(req.params.ciudadName, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.send({
+          status: 0,
+          message: `Not found Propertie with id ${req.params.ciudadName}.`
+        });
+      } else {
+        res.send({
+          status: 0,
+          message: "Error retrieving Propertie with id " + req.params.ciudadName
+        });
+      }
+    } else res.send(data);
+  });
+};
 // Update a Propertie identified by the propertieId in the request
 exports.update = (req, res) => {
   // Validate Request
