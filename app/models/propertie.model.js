@@ -34,8 +34,9 @@ Properties.findById = (propertieId, result) => {
   ,p.sala_comunal,p.a_verdes,p.a_juegosIn,p.serv_basicos,p.guardiania,p.seg_incendios,p.planta_emergencia,
   p.estacionamiento_v,p.ascensor,p.gimnasio,p.gas_centralizado,p.linea_telefonica,p.acabados,p.bodega
   ,p.cuarto_maquinas,p.patio,p.area_bbq,p.balcon,p.cisterna,p.anden_car_descr,p.galpon,p.cerramiento,p.antiguedad
-  ,p.area_total,p.area_contruccion,p.tipo_negociacion, p.terraza,c.ciudad_nombre,pro.provincia_nombre
+  ,p.area_total,p.area_contruccion, p.terraza,c.ciudad_nombre,pro.provincia_nombre, tn.nombre_negocio,p.latitud,p.longitud
    FROM propiedad p 
+   INNER JOIN tipo_negociacion tn ON tn.id_tipoNegocio = p.id_tipoNegocio
    INNER JOIN tipo_inmueble ti ON ti.id_tipoInmueble = p.id_tipoInmueble
     INNER JOIN ciudad c ON  p.id_ciudad=c.id_ciudad
     INNER JOIN provincia pro ON  c.id_provincia = pro.id_provincia
@@ -58,15 +59,17 @@ Properties.findById = (propertieId, result) => {
 };
 Properties.searchById = (ciudadName, result) => {
   sql.query(`SELECT distinct p.id_prop, c.ciudad_nombre,pro.provincia_nombre,pa.pais_nombre,p.nombre_propiedad,
-  p.precio,p.dormitorios,p.baños,p.description,p.ubicacion,i.img_url,p.area_total,
-  p.tipo_negociacion,t.nombre_inmueble  FROM propiedad p
+  p.precio,p.dormitorios,p.baños,p.description,p.ubicacion,i.img_url,p.area_total,t.nombre_inmueble ,tn.nombre_negocio,
+  p.latitud,p.longitud
+   FROM propiedad p
+        INNER JOIN tipo_negociacion tn ON tn.id_tipoNegocio = p.id_tipoNegocio
         INNER JOIN ciudad c ON p.id_ciudad = c.id_ciudad 
         INNER JOIN provincia pro ON pro.id_provincia = c.id_provincia
         INNER JOIN pais pa ON pa.id_pais = pro.id_pais 
         INNER JOIN tipo_inmueble t ON t.id_tipoInmueble = p.id_tipoInmueble
         INNER JOIN imagen i ON p.id_prop =i.id_prop 
         where    c.ciudad_nombre=${ciudadName} or p.dormitorios=${ciudadName} 
-        or p.baños=${ciudadName}  or p.tipo_negociacion=${ciudadName}  or p.precio=${ciudadName} 
+        or p.baños=${ciudadName}  or tn.nombre_negocio=${ciudadName}  or p.precio=${ciudadName} 
          or t.nombre_inmueble=${ciudadName}  and i.img_principal=1
   group by p.id_prop
   
@@ -118,8 +121,9 @@ Properties.searchById1 = (ciudadName, result) => {
 Properties.getAll = result => {
   sql.query(`SELECT p.id_prop, p.nombre_propiedad, p.precio , p.dormitorios , p.baños,p.description ,p.ubicacion
   , c.ciudad_nombre 
-   , provincia_nombre ,pa.pais_nombre, p.tipo_negociacion
+   , provincia_nombre ,pa.pais_nombre,tn.nombre_negocio
    FROM propiedad p
+   INNER JOIN tipo_negociacion tn ON tn.id_tipoNegocio = p.id_tipoNegocio
    INNER JOIN ciudad c ON c.id_ciudad=p.id_ciudad
    INNER JOIN provincia pro ON pro.id_provincia = c.id_provincia
    INNER JOIN pais pa ON pa.id_pais= pro.id_pais
