@@ -127,6 +127,7 @@ Properties.getAll = result => {
    INNER JOIN ciudad c ON c.id_ciudad=p.id_ciudad
    INNER JOIN provincia pro ON pro.id_provincia = c.id_provincia
    INNER JOIN pais pa ON pa.id_pais= pro.id_pais
+   WHERE p.estado=1
    order by p.id_prop`, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -161,7 +162,8 @@ Properties.findInerJoin = (propertieId, result) => {
 
 
 Properties.AllCiudad = result => {
-  sql.query("SELECT * FROM ciudad", (err, res) => {
+  sql.query(`SELECT distinct c.ciudad_nombre FROM club_trueque.ciudad  c Inner join propiedad pro on c.id_ciudad = pro.id_ciudad 
+  order by c.id_ciudad;`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
