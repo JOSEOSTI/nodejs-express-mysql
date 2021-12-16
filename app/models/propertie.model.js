@@ -89,7 +89,192 @@ Properties.searchById = (ciudadName, result) => {
     result({ kind: "not_found" }, null);
   });
 };
+Properties.searchBañosId = (ciudadName, result) => {
+  sql.query(`SELECT distinct p.id_prop, c.ciudad_nombre,pro.provincia_nombre,pa.pais_nombre,p.nombre_propiedad,
+  p.precio,p.dormitorios,p.baños,p.description,p.ubicacion,i.img_url,p.area_total,t.nombre_inmueble ,tn.nombre_negocio,
+  p.latitud,p.longitud
+   FROM propiedad p
+        INNER JOIN tipo_negociacion tn ON tn.id_tipoNegocio = p.id_tipoNegocio
+        INNER JOIN ciudad c ON p.id_ciudad = c.id_ciudad 
+        INNER JOIN provincia pro ON pro.id_provincia = c.id_provincia
+        INNER JOIN pais pa ON pa.id_pais = pro.id_pais 
+        INNER JOIN tipo_inmueble t ON t.id_tipoInmueble = p.id_tipoInmueble
+        INNER JOIN imagen i ON p.id_prop =i.id_prop 
+        where   
+         p.baños=${ciudadName}  and i.img_principal=1
+  group by p.id_prop
+  
+  `, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
 
+    if (res.length) {
+      result(null, res);
+      return;
+    }
+
+    // not found Customer with the id
+    result({ kind: "not_found" }, null);
+  });
+};
+Properties.searchDormitoriosId = (ciudadName, result) => {
+  sql.query(`SELECT distinct p.id_prop, c.ciudad_nombre,pro.provincia_nombre,pa.pais_nombre,p.nombre_propiedad,
+  p.precio,p.dormitorios,p.baños,p.description,p.ubicacion,i.img_url,p.area_total,t.nombre_inmueble ,tn.nombre_negocio,
+  p.latitud,p.longitud
+   FROM propiedad p
+        INNER JOIN tipo_negociacion tn ON tn.id_tipoNegocio = p.id_tipoNegocio
+        INNER JOIN ciudad c ON p.id_ciudad = c.id_ciudad 
+        INNER JOIN provincia pro ON pro.id_provincia = c.id_provincia
+        INNER JOIN pais pa ON pa.id_pais = pro.id_pais 
+        INNER JOIN tipo_inmueble t ON t.id_tipoInmueble = p.id_tipoInmueble
+        INNER JOIN imagen i ON p.id_prop =i.id_prop 
+        where   
+         p.dormitorios=${ciudadName}  and i.img_principal=1
+  group by p.id_prop
+  
+  `, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      result(null, res);
+      return;
+    }
+
+    // not found Customer with the id
+    result({ kind: "not_found" }, null);
+  });
+};
+Properties.searchEstudioId = (ciudadName, result) => {
+  sql.query(`SELECT distinct p.id_prop, c.ciudad_nombre,pro.provincia_nombre,pa.pais_nombre,p.nombre_propiedad,
+  p.precio,p.dormitorios,p.baños,p.description,p.ubicacion,i.img_url,p.area_total,t.nombre_inmueble ,tn.nombre_negocio,
+  p.latitud,p.longitud,p.sala,p.estudio
+   FROM propiedad p
+        INNER JOIN tipo_negociacion tn ON tn.id_tipoNegocio = p.id_tipoNegocio
+        INNER JOIN ciudad c ON p.id_ciudad = c.id_ciudad 
+        INNER JOIN provincia pro ON pro.id_provincia = c.id_provincia
+        INNER JOIN pais pa ON pa.id_pais = pro.id_pais 
+        INNER JOIN tipo_inmueble t ON t.id_tipoInmueble = p.id_tipoInmueble
+        INNER JOIN imagen i ON p.id_prop =i.id_prop 
+        where   
+         p.estudio and i.img_principal=1
+  group by p.id_prop
+  
+  `, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      result(null, res);
+      return;
+    }
+
+    // not found Customer with the id
+    result({ kind: "not_found" }, null);
+  });
+};
+Properties.searchSalaId = (ciudadName, result) => {
+  sql.query(`SELECT distinct p.id_prop, c.ciudad_nombre,pro.provincia_nombre,pa.pais_nombre,p.nombre_propiedad,
+  p.precio,p.dormitorios,p.baños,p.description,p.ubicacion,i.img_url,p.area_total,t.nombre_inmueble ,tn.nombre_negocio,
+  p.latitud,p.longitud,p.sala
+   FROM propiedad p
+        INNER JOIN tipo_negociacion tn ON tn.id_tipoNegocio = p.id_tipoNegocio
+        INNER JOIN ciudad c ON p.id_ciudad = c.id_ciudad 
+        INNER JOIN provincia pro ON pro.id_provincia = c.id_provincia
+        INNER JOIN pais pa ON pa.id_pais = pro.id_pais 
+        INNER JOIN tipo_inmueble t ON t.id_tipoInmueble = p.id_tipoInmueble
+        INNER JOIN imagen i ON p.id_prop =i.id_prop 
+        where   
+         p.sala and i.img_principal=1
+  group by p.id_prop
+  
+  `, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      result(null, res);
+      return;
+    }
+
+    // not found Customer with the id
+    result({ kind: "not_found" }, null);
+  });
+};
+Properties.searchCocinaId = (ciudadName, result) => {
+  sql.query(`SELECT distinct p.id_prop, c.ciudad_nombre,pro.provincia_nombre,pa.pais_nombre,p.nombre_propiedad,
+  p.precio,p.dormitorios,p.baños,p.description,p.ubicacion,i.img_url,p.area_total,t.nombre_inmueble ,tn.nombre_negocio,
+  p.latitud,p.longitud,p.sala,p.estudio
+   FROM propiedad p
+        INNER JOIN tipo_negociacion tn ON tn.id_tipoNegocio = p.id_tipoNegocio
+        INNER JOIN ciudad c ON p.id_ciudad = c.id_ciudad 
+        INNER JOIN provincia pro ON pro.id_provincia = c.id_provincia
+        INNER JOIN pais pa ON pa.id_pais = pro.id_pais 
+        INNER JOIN tipo_inmueble t ON t.id_tipoInmueble = p.id_tipoInmueble
+        INNER JOIN imagen i ON p.id_prop =i.id_prop 
+        where   
+         p.cocina and i.img_principal=1
+  group by p.id_prop
+  
+  `, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      result(null, res);
+      return;
+    }
+
+    // not found Customer with the id
+    result({ kind: "not_found" }, null);
+  });
+};
+Properties.searchParqueaderoId = (ciudadName, result) => {
+  sql.query(`SELECT distinct p.id_prop, c.ciudad_nombre,pro.provincia_nombre,pa.pais_nombre,p.nombre_propiedad,
+  p.precio,p.dormitorios,p.baños,p.description,p.ubicacion,i.img_url,p.area_total,t.nombre_inmueble ,tn.nombre_negocio,
+  p.latitud,p.longitud,p.sala,p.estudio
+   FROM propiedad p
+        INNER JOIN tipo_negociacion tn ON tn.id_tipoNegocio = p.id_tipoNegocio
+        INNER JOIN ciudad c ON p.id_ciudad = c.id_ciudad 
+        INNER JOIN provincia pro ON pro.id_provincia = c.id_provincia
+        INNER JOIN pais pa ON pa.id_pais = pro.id_pais 
+        INNER JOIN tipo_inmueble t ON t.id_tipoInmueble = p.id_tipoInmueble
+        INNER JOIN imagen i ON p.id_prop =i.id_prop 
+        where   
+         p.estacionamiento_v and i.img_principal=1
+  group by p.id_prop
+  
+  `, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+
+    if (res.length) {
+      result(null, res);
+      return;
+    }
+
+    // not found Customer with the id
+    result({ kind: "not_found" }, null);
+  });
+};
 Properties.searchById1 = (ciudadName, result) => {
   sql.query(`SELECT  p.id_prop,i.img_url FROM propiedad p
         INNER JOIN ciudad c ON p.id_ciudad = c.id_ciudad 

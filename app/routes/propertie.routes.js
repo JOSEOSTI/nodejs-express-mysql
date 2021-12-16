@@ -45,7 +45,12 @@ module.exports = app => {
 
   // Retrieve a single Customer with customerId
   app.get("/properties/search/:ciudadName", properties.findSearch);
-
+  app.get("/properties/searchB/:ciudadName", properties.findSearchBaños);
+  app.get("/properties/searchD/:ciudadName", properties.findSearchDormitorios);
+  app.get("/properties/search/-/Estudio/", properties.findSearchEstudio);
+  app.get("/properties/search/-/Sala/", properties.findSearchSala); 
+  app.get("/properties/search/-/Cocina/", properties.findSearchCocina);
+  app.get("/properties/search/-/Parqueadero/", properties.findSearchParqueadero);
   app.get("/properties/searchImg/:ciudadName", properties.findSearch1);
 
 

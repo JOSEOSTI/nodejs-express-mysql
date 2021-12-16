@@ -31,7 +31,7 @@ Imagenes.findById = (imagenId, result) => {
       result(err, null);
       return;
     }
-
+    
     if (res.length) {
       console.log("found image: ", res);
       result(null, res);

@@ -121,7 +121,108 @@ exports.findSearch = (req, res) => {
     } else res.send(data);
   });
 };
-
+exports.findSearchBaños = (req, res) => {
+  Properties.searchBañosId(req.params.ciudadName, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.send({
+          status: 0,
+          message: `Not found Propertie with id ${req.params.ciudadName}.`
+        });
+      } else {
+        res.send({
+          status: 0,
+          message: "Error retrieving Propertie with id " + req.params.ciudadName
+        });
+      }
+    } else res.send(data);
+  });
+};
+exports.findSearchDormitorios = (req, res) => {
+  Properties.searchDormitoriosId(req.params.ciudadName, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.send({
+          status: 0,
+          message: `Not found Propertie with id ${req.params.ciudadName}.`
+        });
+      } else {
+        res.send({
+          status: 0,
+          message: "Error retrieving Propertie with id " + req.params.ciudadName
+        });
+      }
+    } else res.send(data);
+  });
+};
+exports.findSearchEstudio = (req, res) => {
+  Properties.searchEstudioId(req.params.ciudadName, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.send({
+          status: 0,
+          message: `Not found Propertie with id ${req.params.ciudadName}.`
+        });
+      } else {
+        res.send({
+          status: 0,
+          message: "Error retrieving Propertie with id " + req.params.ciudadName
+        });
+      }
+    } else res.send(data);
+  });
+};
+exports.findSearchSala = (req, res) => {
+  Properties.searchSalaId(req.params.ciudadName, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.send({
+          status: 0,
+          message: `Not found Propertie with id ${req.params.ciudadName}.`
+        });
+      } else {
+        res.send({
+          status: 0,
+          message: "Error retrieving Propertie with id " + req.params.ciudadName
+        });
+      }
+    } else res.send(data);
+  });
+};
+exports.findSearchCocina = (req, res) => {
+  Properties.searchCocinaId(req.params.ciudadName, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.send({
+          status: 0,
+          message: `Not found Propertie with id ${req.params.ciudadName}.`
+        });
+      } else {
+        res.send({
+          status: 0,
+          message: "Error retrieving Propertie with id " + req.params.ciudadName
+        });
+      }
+    } else res.send(data);
+  });
+};
+exports.findSearchParqueadero = (req, res) => {
+  Properties.searchParqueaderoId(req.params.ciudadName, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.send({
+          status: 0,
+          message: `Not found Propertie with id ${req.params.ciudadName}.`
+        });
+      } else {
+        res.send({
+          status: 0,
+          message: "Error retrieving Propertie with id " + req.params.ciudadName
+        });
+      }
+    } else res.send(data);
+  });
+};
 exports.findSearch1 = (req, res) => {
   Properties.searchById1(req.params.ciudadName, (err, data) => {
     if (err) {
