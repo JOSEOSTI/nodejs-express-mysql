@@ -58,7 +58,7 @@ Properties.findById = (propertieId, result) => {
   });
 };
 Properties.searchById = (ciudadName, result) => {
-  sql.query(`SELECT distinct p.id_prop, c.ciudad_nombre,pro.provincia_nombre,pa.pais_nombre,p.nombre_propiedad,
+  sql.query(`SELECT  p.id_prop, c.ciudad_nombre,pro.provincia_nombre,pa.pais_nombre,p.nombre_propiedad,
   p.precio,p.dormitorios,p.baños,p.description,p.ubicacion,i.img_url,p.area_total,t.nombre_inmueble ,tn.nombre_negocio,
   p.latitud,p.longitud
    FROM propiedad p
@@ -71,7 +71,7 @@ Properties.searchById = (ciudadName, result) => {
         where    c.ciudad_nombre=${ciudadName} or p.dormitorios=${ciudadName} 
         or p.baños=${ciudadName}  or tn.nombre_negocio=${ciudadName}  or p.precio=${ciudadName} 
          or t.nombre_inmueble=${ciudadName}  and i.img_principal=1
-  group by p.id_prop
+  order by p.id_prop
   
   `, (err, res) => {
     if (err) {

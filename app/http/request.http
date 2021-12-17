@@ -139,6 +139,10 @@ PUT http://localhost:9000/properties/16 HTTP/1.1
 
 
 
+###################################################
+#
+GET http://localhost:9000/banner/findId/"1" HTTP/1.1
+
 
 
 

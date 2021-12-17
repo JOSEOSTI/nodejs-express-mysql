@@ -4,6 +4,7 @@ module.exports = app => {
   const imagenes = require("../controllers/images.controller.js");
   const users = require("../controllers/users.controller.js");
   const autos = require("../controllers/autos.controller.js");
+  const banner = require("../controllers/banner.controller.js");
 
 
   //------------------------------------------------------------------//
@@ -107,5 +108,15 @@ module.exports = app => {
   app.post("/users/upload", users.imgUpdate);
   app.get("/users/img/avatar/:avatarId", users.getImgUser);
 
+
+
+
+
+
+  /////--------------Banners-----------------------------//
+  app.post("/banner/register", users.create);
+
+
+  app.get("/banner/findId/:bannerId", banner.findAll);
 
 };
