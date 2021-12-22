@@ -233,17 +233,6 @@ Autos.remove = (id, result) => {
   });
 };
 
-Autos.removeAll = result => {
-  sql.query("DELETE FROM propiedad", (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
 
-    console.log(`deleted ${res.affectedRows} properties`);
-    result(null, res);
-  });
-};
 
 module.exports = Autos;
