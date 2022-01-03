@@ -24,7 +24,7 @@ Autos.create = (newAuto, result) => {
       return;
     }
 
-    console.log("created automovil: ", { id: res.insertId, ...newAuto });
+    // console.log("created automovil: ", { id: res.insertId, ...newAuto });
     result(null, { id: res.insertId, ...newAuto });
   });
 };
@@ -51,7 +51,7 @@ Autos.findById = (automovilId, result) => {
     }
 
     if (res.length) {
-      console.log("found propertie: ", res);
+      // console.log("found propertie: ", res);
       result(null, res);
       return;
     }
@@ -81,7 +81,7 @@ Autos.searchById = (dataAuto, result) => {
     }
 
     if (res.length) {
-      console.log("found propertie: ", res);
+      // console.log("found propertie: ", res);
       result(null, res);
       return;
     }
@@ -112,7 +112,7 @@ Autos.getAll = result => {
       return;
     }
 
-    console.log("automoviles: ", res);
+    // console.log("automoviles: ", res);
     result(null, res);
   });
 };
@@ -127,7 +127,7 @@ Autos.findInerJoin = (propertieId, result) => {
     }
 
     if (res.length) {
-      console.log("found propertie: ", res);
+      // console.log("found propertie: ", res);
       result(null, res);
       return;
     }
@@ -146,7 +146,7 @@ Autos.AllMarca = result => {
       return;
     }
 
-    console.log("ciudad: ", res);
+    // console.log("ciudad: ", res);
     result(null, res);
   });
 };
@@ -159,7 +159,7 @@ Autos.AllCombustible = result => {
       return;
     }
 
-    console.log("ciudad: ", res);
+    // console.log("ciudad: ", res);
     result(null, res);
   });
 };
@@ -171,7 +171,7 @@ Autos.AllTransmision = result => {
       return;
     }
 
-    console.log("ciudad: ", res);
+    // console.log("ciudad: ", res);
     result(null, res);
   });
 };
@@ -184,7 +184,7 @@ Autos.AllSubtipo = result => {
       return;
     }
 
-    console.log("ciudad: ", res);
+    // console.log("ciudad: ", res);
     result(null, res);
   });
 };

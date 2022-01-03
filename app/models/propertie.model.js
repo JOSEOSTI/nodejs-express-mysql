@@ -320,7 +320,7 @@ Properties.getAll = result => {
       return;
     }
 
-    console.log("properties: ", res);
+    // console.log("properties: ", res);
     result(null, res);
   });
 };
@@ -335,7 +335,7 @@ Properties.findInerJoin = (propertieId, result) => {
     }
 
     if (res.length) {
-      console.log("found propertie: ", res);
+      // console.log("found propertie: ", res);
       result(null, res);
       return;
     }
@@ -355,7 +355,7 @@ Properties.AllCiudad = result => {
       return;
     }
 
-    console.log("ciudad: ", res);
+    // console.log("ciudad: ", res);
     result(null, res);
   });
 };
@@ -368,7 +368,7 @@ Properties.AllInmuebe = result => {
       return;
     }
 
-    console.log("ciudad: ", res);
+    // console.log("ciudad: ", res);
     result(null, res);
   });
 };
@@ -391,7 +391,7 @@ Properties.updateById = (id, propertie, result) => {
         return;
       }
 
-      console.log("updated propertie: ", { id: id, ...propertie });
+      // console.log("updated propertie: ", { id: id, ...propertie });
       result(null, { id: id, ...propertie });
     }
   );

@@ -19,7 +19,7 @@ Imagenes.create = (newImagen, result) => {
       return;
     }
 
-    console.log("created imagenes: ", { id: res.insertId, ...newImagen });
+    // console.log("created imagenes: ", { id: res.insertId, ...newImagen });
     result(null, { id: res.insertId, ...newImagen });
   });
 };
@@ -33,7 +33,7 @@ Imagenes.findById = (imagenId, result) => {
     }
     
     if (res.length) {
-      console.log("found image: ", res);
+      // console.log("found image: ", res);
       result(null, res);
       return;
     }
@@ -52,7 +52,7 @@ Imagenes.autoById = (imagenId, result) => {
     }
 
     if (res.length) {
-      console.log("found image: ", res);
+      // console.log("found image: ", res);
       result(null, res);
       return;
     }

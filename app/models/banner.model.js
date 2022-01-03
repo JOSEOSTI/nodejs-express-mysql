@@ -38,7 +38,7 @@ Banners.getFindId = (bannerId, result) => {
     }
 
     if (res.length) {
-      console.log("found ¿banner: ", res);
+      // console.log("found ¿banner: ", res);
       result(null, res);
       return;
     }
