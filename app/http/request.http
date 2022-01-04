@@ -60,15 +60,18 @@ POST http://localhost:9000/properties HTTP/1.1
 Content-Type: application/json
 
 {
-    "id_pais": 1,
+    "id_tipoInmueble": 1,
     "id_ciudad": 1,
-    "name": "Suite Empresarial",
-    "price":200 ,
+    "id_tipoNegocio": 1,
+    "nombre_propiedad": "Suite Ejemplo images",
+    "precio": 150,
     "description":"Esta suite tiene un amplio closet, el piso es de tablones de madera chanul , amplias ventanas que la hacen muy luminosa y cálida y desde las cuales puedes tener una hermosa vista del paisaje.",
-    "address":"Avenida Americas",
-    "beds":"1",
-    "toileds":"5",
-    "square":"m2"
+    "ubicacion":"el condado S6-130 norte quito",
+    "dormitorios":"3",
+    "sala":"",
+    "comedor":"",
+    "cocina":"1",
+    "baños":"1"
    
 }
 
@@ -84,17 +87,16 @@ GET http://localhost:9000/properties/src/15 HTTP/1.1
 DELETE http://localhost:9000/properties/2 HTTP/1.1
 
 ###
-PUT http://localhost:9000/properties/16 HTTP/1.1
+GET  http://localhost:9000/properties/16 HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Suite Ejemplo images",
-    "price": 150,
+    "nombre_propiedad": "Suite Ejemplo images",
+    "precio": 150,
     "description":"Esta suite tiene un amplio closet, el piso es de tablones de madera chanul , amplias ventanas que la hacen muy luminosa y cálida y desde las cuales puedes tener una hermosa vista del paisaje.",
-    "address":"el condado S6-130 norte quito",
-    "beds":"8",
-    "toileds":"2",
-    "square":"2m 4m 8m2"
+    "ubicacion":"el condado S6-130 norte quito",
+    "dormitorios":"3",
+    "baños":"2",
 
 }
 

@@ -2,15 +2,18 @@ const sql = require("./db.js");
 
 // constructor
 const Properties = function (properties) {
-  this.id_pais = properties.id_pais;
+  this.id_tipoInmueble = properties.id_tipoInmueble;
   this.id_ciudad = properties.id_ciudad;
-  this.name = properties.name;
-  this.price = properties.price;
+  this.id_tipoNegocio = properties.id_tipoNegocio;
+  this.nombre_propiedad = properties.nombre_propiedad;
+  this.precio = properties.precio;
   this.description = properties.description;
-  this.address = properties.address;
-  this.beds = properties.beds;
-  this.toileds = properties.toileds;
-  this.square = properties.square
+  this.ubicacion = properties.ubicacion;
+  this.dormitorios = properties.dormitorios;
+  this.sala = properties.sala;
+  this.comedor= properties.comedor;
+  this.cocina=properties.cocina;
+  this.baños=properties.baños;
 };
 
 

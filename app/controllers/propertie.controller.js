@@ -12,15 +12,18 @@ exports.create = (req, res) => {
   // Create a Propertie
   const propertie = new Properties({
 
-    id_pais: req.body.id_pais,
-    id_ciudad: req.body.id_ciudad,
-    name: req.body.name,
-    price: req.body.price,
-    description: req.body.description,
-    address: req.body.address,
-    beds: req.body.beds,
-    toileds: req.body.toileds,
-    square: req.body.square
+    id_tipoInmueble : req.body.id_tipoInmueble,
+    id_ciudad : req.body.id_ciudad,
+    id_tipoNegocio : req.body.id_tipoNegocio,
+    nombre_propiedad : req.body.nombre_propiedad,
+    precio : req.body.precio,
+    description : req.body.description,
+    ubicacion : req.body.ubicacion,
+    dormitorios : req.body.dormitorios,
+    sala : req.body.sala,
+    comedor: req.body.comedor,
+    cocina:req.body.cocina,
+    baños:req.body.baños
   });
 
 
