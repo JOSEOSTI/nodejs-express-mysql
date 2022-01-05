@@ -36,6 +36,8 @@ module.exports = app => {
 
   // Retrieve all properties
   app.get("/properties", properties.findAll);
+  app.get("/propertiesList", properties.findAll1);
+
 
   // Retrieve a single Customer with customerId
   app.get("/properties/:propertieId", properties.findOne);

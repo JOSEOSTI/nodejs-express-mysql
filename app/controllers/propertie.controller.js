@@ -23,7 +23,10 @@ exports.create = (req, res) => {
     sala : req.body.sala,
     comedor: req.body.comedor,
     cocina:req.body.cocina,
-    baños:req.body.baños
+    baños:req.body.baños,
+    latitud:req.body.latitud,
+    longitud:req.body.longitud
+
   });
 
 
@@ -42,6 +45,16 @@ exports.create = (req, res) => {
 // Retrieve all propertie from the database.
 exports.findAll = (req, res) => {
   Properties.getAll((err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving propertie."
+      });
+    else res.send(data);
+  });
+};
+exports.findAll1 = (req, res) => {
+  Properties.getAll1((err, data) => {
     if (err)
       res.status(500).send({
         message:
