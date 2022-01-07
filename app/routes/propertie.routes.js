@@ -5,6 +5,7 @@ module.exports = app => {
   const users = require("../controllers/users.controller.js");
   const autos = require("../controllers/autos.controller.js");
   const banner = require("../controllers/banner.controller.js");
+  const inmueble = require("../controllers/inmueble.js");
 
 
   //------------------------------------------------------------------//
@@ -61,7 +62,7 @@ module.exports = app => {
   app.put("/properties/:propertieId", properties.update);
 
   // Delete a Customer with customerId
-  app.delete("/properties/:propertieId", properties.delete);
+  app.delete("/properties/delete/:propertieId", properties.delete);
 
   // Create a new Customer
   app.delete("/properties", properties.deleteAll);
@@ -104,6 +105,10 @@ module.exports = app => {
   app.get("/users/:userId", users.findUserId);
 
   app.put("/users/:updateUser", users.update);
+
+  /////--------------------inmueble--------------------------------///
+  app.post("/inmueble", inmueble.create);
+  app.delete("/inmueble/delete/:inmuebleId",inmueble.delete);
 
   ///////////*-------------------LOGIN---------*----------------////
   app.post("/users/login", users.login);

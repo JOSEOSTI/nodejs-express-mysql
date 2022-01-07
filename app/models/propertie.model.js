@@ -334,7 +334,7 @@ Properties.getAll = result => {
 Properties.getAll1 = result => {
   sql.query(`SELECT p.id_prop, p.nombre_propiedad, p.precio , p.dormitorios , p.baños,p.description ,p.ubicacion
   , c.ciudad_nombre 
-   , provincia_nombre ,pa.pais_nombre,tn.nombre_negocio
+   , provincia_nombre ,pa.pais_nombre,tn.nombre_negocio, p.codigo
    FROM propiedad p
    INNER JOIN tipo_negociacion tn ON tn.id_tipoNegocio = p.id_tipoNegocio
    INNER JOIN ciudad c ON c.id_ciudad=p.id_ciudad

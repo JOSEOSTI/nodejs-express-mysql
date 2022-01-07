@@ -84,7 +84,7 @@ GET http://localhost:9000/properties/15 HTTP/1.1
 GET http://localhost:9000/properties/src/15 HTTP/1.1
 
 ###
-DELETE http://localhost:9000/properties/2 HTTP/1.1
+DELETE http://localhost:9000/properties/delete/35 HTTP/1.1
 
 ###
 GET  http://localhost:9000/properties/16 HTTP/1.1
