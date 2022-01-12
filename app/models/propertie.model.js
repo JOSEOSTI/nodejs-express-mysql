@@ -5,18 +5,25 @@ const Properties = function (properties) {
   this.id_tipoInmueble = properties.id_tipoInmueble;
   this.id_ciudad = properties.id_ciudad;
   this.id_tipoNegocio = properties.id_tipoNegocio;
+  this.codigo_propiedad = properties.codigo_propiedad;
   this.nombre_propiedad = properties.nombre_propiedad;
   this.precio = properties.precio;
   this.description = properties.description;
   this.ubicacion = properties.ubicacion;
   this.dormitorios = properties.dormitorios;
   this.sala = properties.sala;
-  this.comedor= properties.comedor;
-  this.cocina=properties.cocina;
-  this.baños=properties.baños;
-  this.latitud=properties.latitud;
-  this.longitud=properties.longitud;
-
+  this.comedor = properties.comedor;
+  this.cocina = properties.cocina;
+  this.baños = properties.baños;
+  this.latitud = properties.latitud;
+  this.longitud = properties.longitud;
+  this.estacionamiento_v = properties.estacionamiento_v,
+    this.bodega = properties.bodega,
+    this.a_lavanderia = properties.a_lavanderia,
+    this.piscina = properties.piscina,
+    this.terraza = properties.terraza,
+    this.guardiania = properties.seguridad,
+    this.enabled_propiedad = properties.enabled_propiedad
 };
 
 
@@ -334,12 +341,13 @@ Properties.getAll = result => {
 Properties.getAll1 = result => {
   sql.query(`SELECT p.id_prop, p.nombre_propiedad, p.precio , p.dormitorios , p.baños,p.description ,p.ubicacion
   , c.ciudad_nombre 
-   , provincia_nombre ,pa.pais_nombre,tn.nombre_negocio, p.codigo
+   , provincia_nombre ,pa.pais_nombre,tn.nombre_negocio, p.codigo_propiedad
    FROM propiedad p
    INNER JOIN tipo_negociacion tn ON tn.id_tipoNegocio = p.id_tipoNegocio
    INNER JOIN ciudad c ON c.id_ciudad=p.id_ciudad
    INNER JOIN provincia pro ON pro.id_provincia = c.id_provincia
    INNER JOIN pais pa ON pa.id_pais= pro.id_pais
+   where p.enabled_propiedad="1"
    order by p.id_prop`, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -425,7 +433,7 @@ Properties.updateById = (id, propertie, result) => {
 };
 
 Properties.remove = (id, result) => {
-  sql.query("DELETE FROM propiedad WHERE id_prop = ?", id, (err, res) => {
+  sql.query("UPDATE propiedad SET  enabled_propiedad = ? WHERE id_prop = ?", [enabled_propiedad = "0", id], (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

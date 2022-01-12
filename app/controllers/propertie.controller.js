@@ -12,21 +12,28 @@ exports.create = (req, res) => {
   // Create a Propertie
   const propertie = new Properties({
 
-    id_tipoInmueble : req.body.id_tipoInmueble,
-    id_ciudad : req.body.id_ciudad,
-    id_tipoNegocio : req.body.id_tipoNegocio,
-    nombre_propiedad : req.body.nombre_propiedad,
-    precio : req.body.precio,
-    description : req.body.description,
-    ubicacion : req.body.ubicacion,
-    dormitorios : req.body.dormitorios,
-    sala : req.body.sala,
+    id_tipoInmueble: req.body.id_tipoInmueble,
+    id_ciudad: req.body.id_ciudad,
+    id_tipoNegocio: req.body.id_tipoNegocio,
+    codigo_propiedad: req.body.codigo_propiedad,
+    nombre_propiedad: req.body.nombre_propiedad,
+    precio: req.body.precio,
+    description: req.body.description,
+    ubicacion: req.body.ubicacion,
+    dormitorios: req.body.dormitorios,
+    sala: req.body.sala,
     comedor: req.body.comedor,
-    cocina:req.body.cocina,
-    baños:req.body.baños,
-    latitud:req.body.latitud,
-    longitud:req.body.longitud
-
+    cocina: req.body.cocina,
+    baños: req.body.baños,
+    latitud: req.body.latitud,
+    longitud: req.body.longitud,
+    estacionamiento_v: req.body.estacionamiento_v,
+    bodega: req.body.bodega,
+    a_lavanderia: req.body.a_lavanderia,
+    piscina: req.body.piscina,
+    terraza: req.body.terraza,
+    guardiania: req.body.seguridad,
+enabled_propiedad:req.body.enabled_propiedad
   });
 
 
